@@ -1,0 +1,3 @@
+import { ConflictException, Injectable } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service.js';
+@Injectable() export class CustomersService { constructor(private readonly prisma:PrismaService){} list(search?:string){const term=search?.trim();return this.prisma.customer.findMany({where:{isActive:true,...(term?{OR:[{code:{contains:term,mode:'insensitive'}},{name:{contains:term,mode:'insensitive'}}]}:{})},orderBy:{name:'asc'},take:500})} async create(data:Record<string,string>){try{return await this.prisma.customer.create({data:data as never})}catch(error){if(typeof error==='object'&&error!==null&&'code'in error&&error.code==='P2002')throw new ConflictException('Customer code is already in use');throw error}} }

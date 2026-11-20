@@ -1,0 +1,185 @@
+.page {
+  background: #f4f7f5;
+  color: #17231f;
+}
+
+.content {
+  width: min(100%, 1440px);
+}
+
+.pageHeader {
+  border-color: #dfe8e3;
+  background: linear-gradient(120deg, #fff 0%, #fff 70%, #f5faf7 100%);
+  box-shadow: 0 2px 8px rgb(22 50 37 / 3%);
+}
+
+.headerIcon,
+.statIcon,
+.rowIcon,
+.formIcon {
+  background: #e9f4ee;
+  color: #087653;
+}
+
+.primaryAction {
+  background: linear-gradient(135deg, #087653, #066246);
+  box-shadow: 0 4px 10px rgb(8 118 83 / 16%);
+}
+
+.primaryAction:hover {
+  box-shadow: 0 6px 14px rgb(8 118 83 / 22%);
+  transform: translateY(-1px);
+}
+
+.statCard {
+  border-color: #e0e8e4;
+  box-shadow: 0 2px 8px rgb(22 50 37 / 3%);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.statCard:hover {
+  border-color: #c6ddcf;
+  box-shadow: 0 8px 18px rgb(22 50 37 / 7%);
+  transform: translateY(-2px);
+}
+
+.directory {
+  border-color: #dfe8e3;
+  box-shadow: 0 3px 12px rgb(22 50 37 / 4%);
+}
+
+.toolbar {
+  background: linear-gradient(180deg, #fff 0%, #fcfdfc 100%);
+}
+
+.searchBox {
+  width: min(100%, 18rem);
+}
+
+.searchBox input {
+  border-color: #d6e0da;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.searchBox input:focus {
+  border-color: #087653;
+  box-shadow: 0 0 0 3px rgb(8 118 83 / 10%);
+}
+
+.tableViewport {
+  max-width: 100%;
+  overscroll-behavior-x: contain;
+  scrollbar-color: #c3d3ca transparent;
+  scrollbar-width: thin;
+}
+
+.table {
+  min-width: 760px;
+}
+
+.table thead {
+  background: #f6f9f7;
+}
+
+.table th {
+  border-bottom: 1px solid #e8eeeb;
+  color: #63726b;
+  font-size: 11px;
+  letter-spacing: .075em;
+}
+
+.table tbody tr {
+  transition: background-color 140ms ease;
+}
+
+.table tbody tr:hover {
+  background: #f5faf7;
+}
+
+.rowIcon {
+  border: 1px solid #dcece2;
+}
+
+.codeBadge {
+  border: 1px solid #e5ebe7;
+  background: #f5f8f6;
+  color: #506159;
+}
+
+.actionButton {
+  min-height: 38px;
+  transition: color 140ms ease, background-color 140ms ease, border-color 140ms ease, transform 140ms ease;
+}
+
+.emptyState {
+  animation: appear 180ms ease-out both;
+}
+
+.emptyIcon {
+  border: 1px solid #e0ebe4;
+  background: #f0f6f2;
+  color: #7c9487;
+}
+
+.directoryFooter {
+  background: #fcfdfc;
+}
+
+.modalOverlay {
+  animation: fade-in 140ms ease-out both;
+}
+
+.modalForm {
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  border-color: #dce6e0;
+  box-shadow: 0 24px 64px rgb(12 35 24 / 22%);
+  animation: appear 180ms cubic-bezier(.2, .75, .25, 1) both;
+}
+
+.formHeader {
+  background: #fff;
+}
+
+.formFields {
+  row-gap: 1.25rem;
+}
+
+.formFields input {
+  min-height: 46px;
+  border-color: #d5dfd9;
+}
+
+.formFooter {
+  background: #f7f9f8;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(6px) scale(.995); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 639px) {
+  .searchBox { width: 100%; }
+  .tableViewport { margin-inline: 0; }
+  .modalOverlay { align-items: flex-start; padding: 12px; }
+  .modalForm { max-height: calc(100dvh - 24px); border-radius: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statCard,
+  .actionButton,
+  .table tbody tr,
+  .searchBox input,
+  .modalOverlay,
+  .modalForm,
+  .emptyState {
+    animation: none !important;
+    transition: none !important;
+  }
+}

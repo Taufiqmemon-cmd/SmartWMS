@@ -1,0 +1,11 @@
+sku,productCode,name,description,category,brand,barcode,unit,costPrice,sellingPrice,minimumStock,maximumStock,isActive
+DEMO-CAB-001,DEMO-PROD-001,USB-C Charging Cable 1m,Durable 1 metre USB-C charging cable,Accessories,Northstar,,PCS,120.00,199.00,20,250,true
+DEMO-MOU-001,DEMO-PROD-002,Wireless Optical Mouse,Ergonomic 2.4 GHz wireless optical mouse,Computer Accessories,Northstar,,PCS,420.00,699.00,10,120,true
+DEMO-KBD-001,DEMO-PROD-003,Compact Wireless Keyboard,Compact wireless keyboard with numeric keypad,Computer Accessories,Keyline,,PCS,850.00,1299.00,8,80,true
+DEMO-HDP-001,DEMO-PROD-004,Over-Ear Headphones,Closed-back over-ear headphones with padded ear cups,Audio,SoundPeak,,PCS,1450.00,2199.00,6,60,true
+DEMO-HUB-001,DEMO-PROD-005,USB-C Multiport Hub,USB-C hub with HDMI and USB-A ports,Computer Accessories,Northstar,,PCS,1100.00,1699.00,5,50,true
+DEMO-ADP-001,DEMO-PROD-006,65W USB-C Power Adapter,65 watt USB-C power adapter,Power Accessories,VoltEdge,,PCS,950.00,1499.00,8,80,true
+DEMO-PPR-001,DEMO-PROD-007,A4 Copier Paper 500 Sheets,Ream of 500 sheets of A4 copier paper,Office Supplies,PaperTrail,,REAM,185.00,260.00,30,300,true
+DEMO-LBL-001,DEMO-PROD-008,Thermal Shipping Labels,Roll of 100 by 150 millimetre thermal shipping labels,Packaging,PackRight,,ROLL,240.00,360.00,15,150,true
+DEMO-TAP-001,DEMO-PROD-009,Clear Packing Tape 48mm,Clear adhesive packing tape roll 48 millimetres wide,Packaging,PackRight,,ROLL,42.00,69.00,50,500,true
+DEMO-GLO-001,DEMO-PROD-010,Nitrile Safety Gloves Medium,Medium disposable nitrile safety gloves,Warehouse Safety,SafeHands,,BOX,280.00,425.00,12,120,true

@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --background: #f5f7f6;
+  --surface: #ffffff;
+  --foreground: #17231f;
+  --muted: #64736d;
+  --border: #e2e9e5;
+  --primary: #087653;
+  --primary-hover: #066246;
+  --brand-deep: #064e3b;
+  --brand-gold: #e8c56e;
+  --sidebar-width: 16rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: clip;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #d7eee4;
+  color: #064e3b;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { border: 2px solid transparent; border-radius: 20px; background: #c7d3cd; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background-color: #aabbb2; }
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+button:active:not(:disabled) { transform: translateY(1px); }
+button:disabled { cursor: not-allowed; }
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgb(8 118 83 / 28%);
+  outline-offset: 2px;
+}
+
+input,
+select,
+textarea {
+  min-width: 0;
+  border-color: #cbd6d0;
+  border-radius: 8px;
+  background-color: var(--surface);
+  color: var(--foreground);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+input::placeholder,
+textarea::placeholder { color: #87958f; }
+input:focus,
+select:focus,
+textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgb(8 118 83 / 10%); outline: none; }
+
+main { min-width: 0; animation: page-enter 180ms ease-out both; }
+
+/* Shared application surfaces */
+main section > div,
+main [role="dialog"] {
+  border-color: var(--border);
+  border-radius: 12px;
+}
+
+main table { border-collapse: separate; border-spacing: 0; }
+main table thead { color: #596a63; }
+main table th { font-weight: 600; letter-spacing: .045em; }
+main table tbody tr { transition: background-color 120ms ease; }
+main table tbody tr:hover { background-color: #f6faf8; }
+
+main [role="dialog"] {
+  max-width: min(100%, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+}
+
+/* Keep older blue utility classes aligned with the established SmartWMS green. */
+[class~="bg-blue-600"] { background-color: var(--primary) !important; }
+[class~="bg-blue-600"]:hover,
+[class~="hover:bg-blue-700"]:hover { background-color: var(--primary-hover) !important; }
+[class~="text-blue-600"],
+[class~="text-blue-700"] { color: var(--primary) !important; }
+[class~="bg-blue-50"] { background-color: #edf7f2 !important; }
+[class~="bg-blue-100"] { background-color: #dcefe5 !important; }
+[class~="border-blue-100"],
+[class~="border-blue-200"] { border-color: #c6e2d3 !important; }
+
+aside {
+  background: var(--brand-deep);
+  box-shadow: 4px 0 16px rgb(20 43 33 / 7%);
+}
+
+aside nav a {
+  min-height: 42px;
+  border-radius: 8px;
+  transition: color 140ms ease, background-color 140ms ease, transform 140ms ease;
+}
+
+aside nav a:hover { transform: translateX(2px); }
+aside nav a[aria-current="page"] {
+  background: var(--brand-gold);
+  color: #263a2e;
+  box-shadow: inset 3px 0 0 #c79b3a;
+}
+
+main header {
+  border-color: var(--border);
+}
+
+@keyframes page-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 767px) {
+  aside { box-shadow: 12px 0 32px rgb(12 30 22 / 18%); }
+  main { animation-duration: 140ms; }
+  main header.sticky { top: 3.5rem; }
+  main > div { min-width: 0; }
+  main table { font-size: 13px; }
+  main table th,
+  main table td { white-space: nowrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+.inventory-action-rail{position:fixed;z-index:35;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;padding:8px;border:1px solid rgba(226,233,229,.95);border-radius:18px;background:rgba(255,255,255,.94);box-shadow:0 12px 34px rgba(15,45,35,.15);backdrop-filter:blur(14px);animation:rail-in .35s ease-out}.inventory-action-rail button{display:flex;align-items:center;gap:9px;min-height:42px;padding:0 12px;border-radius:12px;color:#075c44;font-size:12px;font-weight:650;transition:background .18s ease,transform .18s ease,color .18s ease}.inventory-action-rail button:hover{background:#e8f5ef;transform:translateX(-2px);color:#064e3b}.inventory-action-rail button:first-child{background:#087653;color:#fff}.inventory-action-rail button:first-child:hover{background:#066246}.inventory-action-rail button:focus-visible{outline:3px solid #e8c56e;outline-offset:2px}@keyframes rail-in{from{opacity:0;transform:translate(12px,-50%)}to{opacity:1;transform:translate(0,-50%)}}@keyframes modal-in{from{opacity:0;transform:translateY(8px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}@media(max-width:640px){.inventory-action-rail{top:auto;right:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(50%);flex-direction:row;gap:4px;padding:6px;border-radius:16px;max-width:calc(100vw - 24px)}.inventory-action-rail button{justify-content:center;gap:6px;min-height:44px;padding:0 10px;font-size:11px;white-space:nowrap}.inventory-action-rail button:hover{transform:translateY(-2px)}@keyframes rail-in{from{opacity:0;transform:translate(50%,10px)}to{opacity:1;transform:translate(50%,0)}}}@media(prefers-reduced-motion:reduce){.inventory-action-rail,.inventory-action-rail button{animation:none!important;transition:none!important}}

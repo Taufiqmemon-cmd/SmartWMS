@@ -1,0 +1,68 @@
+node_modules/
+**/node_modules/
+**/.next/
+**/dist/
+**/build/
+.env
+.env.*
+!.env.example
+coverage/
+.expo/
+
+# Local logs and temporary backups
+*.log
+*.backup
+*.backup-*
+*.bak
+*.tmp
+
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local databases and generated data
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+node_modules/
+**/node_modules/
+coverage/
+**/.next/
+**/dist/
+**/build/
+
+# Local logs and temporary backups
+*.log
+*.backup
+*.backup-*
+*.bak
+*.tmp
+
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local databases and generated data
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+node_modules/
+**/node_modules/
+coverage/
+**/.next/
+**/dist/
+**/build/

@@ -1,0 +1,12 @@
+import { ConflictException } from '@nestjs/common';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { PrismaService } from '../prisma/prisma.service.js';
+import { StockAuditsService } from './stock-audits.service.js';
+
+describe('StockAuditsService',()=>{
+ const tx={stockCount:{findUnique:vi.fn(),update:vi.fn()},stockCountItem:{findFirst:vi.fn(),update:vi.fn()},stockCountEvent:{create:vi.fn()},user:{findFirst:vi.fn()},inventory:{findMany:vi.fn(),findUnique:vi.fn(),updateMany:vi.fn(),create:vi.fn()},stockMovement:{create:vi.fn()}};
+ const prisma={$transaction:vi.fn((callback:(client:typeof tx)=>unknown)=>callback(tx))};const service=new StockAuditsService(prisma as unknown as PrismaService);beforeEach(()=>vi.clearAllMocks());
+ it('prevents submitting a count while any product is uncounted',async()=>{tx.stockCount.findUnique.mockResolvedValue({id:'count-1',status:'IN_PROGRESS',items:[{countedQuantity:null}]});tx.user.findFirst.mockResolvedValue({id:'operator-1'});await expect(service.submit('count-1','operator-1')).rejects.toBeInstanceOf(ConflictException);expect(tx.stockCount.update).not.toHaveBeenCalled()});
+ it('prevents the count creator approving their own count',async()=>{tx.stockCount.findUnique.mockResolvedValue({id:'count-1',status:'SUBMITTED',createdById:'manager-1',items:[]});tx.user.findFirst.mockResolvedValue({id:'manager-1',role:'MANAGER'});await expect(service.approve('count-1',{actorId:'manager-1'})).rejects.toThrow(/cannot approve their own count/);expect(tx.inventory.findMany).not.toHaveBeenCalled()});
+ it('posts approved variances as one traceable adjustment transaction',async()=>{tx.stockCount.findUnique.mockResolvedValue({id:'count-1',countNumber:'CNT-1',status:'APPROVED',warehouseId:'warehouse-1',locationId:'location-1',items:[{id:'line-1',productId:'product-1',bookQuantity:'4',countedQuantity:'5'}]});tx.user.findFirst.mockResolvedValue({id:'manager-2'});tx.inventory.findUnique.mockResolvedValue({id:'stock-1',quantity:'4',reserved:'0'});tx.inventory.updateMany.mockResolvedValue({count:1});tx.stockCount.update.mockResolvedValue({id:'count-1',status:'POSTED'});await expect(service.post('count-1','manager-2')).resolves.toMatchObject({status:'POSTED'});expect(tx.inventory.updateMany).toHaveBeenCalled();expect(tx.stockMovement.create).toHaveBeenCalledWith(expect.objectContaining({data:expect.objectContaining({type:'ADJUSTMENT',quantity:expect.anything(),operationKey:'cyclecount:count-1:line-1'})}))});
+});
